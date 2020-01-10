@@ -1,0 +1,33 @@
+{
+  "name": "2dv513_finalproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "cd .. && npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnaMalmgren/2dv513_finalProject.git"
+  },
+  "author": "Anna Malmgren",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AnnaMalmgren/2dv513_finalProject/issues"
+  },
+  "homepage": "https://github.com/AnnaMalmgren/2dv513_finalProject#readme",
+  "dependencies": {
+    "concurrently": "^5.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "mysql2": "^2.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
