@@ -8,7 +8,9 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "cd .. && npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "createTables": "cd ./models/DAL/Tables && node createTables.js",
+    "seeder": "cd ./models/DAL/Tables && node tableSeeder.js"
   },
   "repository": {
     "type": "git",

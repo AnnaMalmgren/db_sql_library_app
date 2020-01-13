@@ -1,0 +1,28 @@
+[
+    {"student_id":"sn522gb","book_isbn":"9781107537095","score":"4","comment":"Interesting book! It thought me alot about humanitarian law and had good discussions!"},
+    {"student_id":"js387mk","book_isbn":"9781107537095","score":"3","comment":"Ok book. Would have liked it to be a bit deeper"},
+    {"student_id":"sn522gb","book_isbn":"9781107664340","score":"5","comment":"Excellent book, helped me alot during european union law studies."},
+    {"student_id":"sn522gb","book_isbn":"9780198745624 ","score":"3","comment":"A short and consise book for someone who wants an easy intruction to law"},
+    {"student_id":"am223rj","book_isbn":"9780198745624 ","score":"3","comment":"Good book, easy to read and understand"},
+    {"student_id":"js387mk","book_isbn":"9780198745624 ","score":"2","comment":"I think the book should have been a bit more detailed. Didn't give as much as I wished."},
+    {"student_id":"js387mk","book_isbn":"9781949815009","score":"4","comment":"A good book when you want to develop your understanding of JavaScript."},
+    {"student_id":"gs412ht","book_isbn":"9781949815009","score":"3","comment":"Ok book, helped me understand Javascript on a deeper level. Good for webprogrammers."},
+    {"student_id":"sn522gb","book_isbn":"9781949815009","score":"2","comment":"I did'nt have much use of the book, I might need to learn more about JavaScript firts though."},
+    {"student_id":"am223rj","book_isbn":"9781949815009","score":"4","comment":"Very interesting book, helped med with Javascript during web programming courses."},
+    {"student_id":"sn522gb","book_isbn":"9781292097619","score":"4","comment":"Got book for courses with database management systems where you also need to study the theori and design part!"},
+    {"student_id":"no356it","book_isbn":"9781292097619","score":"2","comment":"Didn't do much for me. To much theory and to little actual sql and code."},
+    {"student_id":"sn522gb","book_isbn":"9780132350884","score":"4","comment":"Easy to understand and very useful learning code quality"},
+    {"student_id":"gs412ht","book_isbn":"9780132350884","score":"4","comment":"Interesting and fun to read. I learnt alot about clean code"},
+    {"student_id":"no356it","book_isbn":"9780132350884","score":"3","comment":"The book was ok."},
+    {"student_id":"am223rj","book_isbn":"9780132350884","score":"5","comment":"Excellent book, helped me to understand how to improve my code quality a lot! Very useful book!"},
+    {"student_id":"gs412ht","book_isbn":"9781509917693","score":"3","comment":"Interesting book, if you need to learn about Lord Leonard Hoffmann this is a book for you"},
+    {"student_id":"no356it","book_isbn":"9781509917693","score":"3","comment":"Good book, worth reading"},
+    {"student_id":"em445yr","book_isbn":"9780135781869","score":"4","comment":"If you want to read about agile software development, how, trade offs etc this is a great book. Robert C. Martin is very intresting and gifted."},
+    {"student_id":"no356it","book_isbn":"9780135781869","score":"4","comment":"Gives good information on how to and when to use agile project techniques."},
+    {"student_id":"sn522gb","book_isbn":"9780135781869","score":"3","comment":"Ok book, if you need to learn about an agile process you probably would benefit from reading this book"},
+    {"student_id":"no356it","book_isbn":"9780198806011","score":"3","comment":"Ok book, fun to read. Could have been more detailed."},
+    {"student_id":"em445yr","book_isbn":"9780198806011","score":"2","comment":"Not as advanced book as I would have liked, unnecessary to read for me"},
+    {"student_id":"sn522gb","book_isbn":"9780198806011","score":"4","comment":"Fun to read book, easy to understand and good examples and reading tips."},
+    {"student_id":"am223rj","book_isbn":"9780198806011","score":"3","comment":"Ok book, helped me with legal theory"}
+
+]
