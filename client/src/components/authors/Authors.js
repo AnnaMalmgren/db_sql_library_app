@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import '../../App.css'
 import { NavLink, Link } from 'react-router-dom'
 
-function Books () {
-  const [books, setBooks] = useState([])
+function Authors () {
+  const [authors, setAuthors] = useState([])
 
   useEffect(() => {
     const fechData = async () => {
-      let res = await window.fetch('/api/books')
+      let res = await window.fetch('/api/authors')
       res = await res.json()
-      setBooks(res)
+      setAuthors(res)
     }
     fechData()
   }, [])
@@ -22,14 +22,14 @@ function Books () {
         </div>
       </nav>
       <div className='container'>
-        <h2 className='p-2 m-2'>Books</h2>
-        <p>Too see more detailed information about a specific book, click on the title</p>
+        <h2 className='p-2 m-2'>Authors</h2>
+        <p>Too view books of specific author, click on the authors name</p>
         <div className='m-2, p-2'>
           <ul className='list-group text-left'>
-            { books.map(book =>
-              <li className='list-group-item' key={book.isbn}>
-                <Link to={'/book/' + book.isbn} className='text-dark text-decoration-none'>
-                  <strong>{book.title}</strong>, <i>by {book.author}</i>
+            { authors.map(author =>
+              <li className='list-group-item' key={author.id}>
+                <Link to={`/author/${author.id}`} className='text-dark text-decoration-none'>
+                  {author.authors}
                 </Link>
               </li>) }
           </ul>
@@ -39,4 +39,4 @@ function Books () {
   )
 }
 
-export default Books
+export default Authors

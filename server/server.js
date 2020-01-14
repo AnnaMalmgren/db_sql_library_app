@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use('/api/books', require('./routes/bookRouter'))
 app.use('/api/authors', require('./routes/authorRouter'))
 app.use('/api/reviews', require('./routes/reviewRouter'))
+app.use('/api/loans', require('./routes/loanRouter'))
 
 app.listen(process.env.PORT || 5500)
 

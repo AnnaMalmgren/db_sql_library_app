@@ -4,13 +4,24 @@ const mysql = require('../config/dbConnection')
 
 const loanController = {}
 
-loanController.getBookTitlesgetAvailableBook = async (req, res, next) => {
+loanController.getAvailable = async (req, res, next) => {
   const sql = `
-    SELECT DISTINCT books.title, CONCAT(authors.first_name, ' ', authors.last_name) AS author
-    FROM books
-    JOIN writes ON books.isbn = writes.book_isbn
-    JOIN authors ON writes.author_id = authors.id
-    GROUP BY books.title
+    SELECT available, isbn 
+    FROM available_books
+    WHERE isbn = ${req.params.isbn}
+    `
+  mysql.execute(sql)
+    .then(([rows, fields]) => {
+      res.send(JSON.stringify(rows))
+    })
+}
+
+loanController.getLoansStudent = async (req, res, next) => {
+  const sql = `
+    SELECT books.title, loans.return_date, loans.loan_date, copys.isbn
+    FROM loans
+    JOIN copys ON loans.copy_id = copys.id AND loans.student_id = '${req.params.id}'
+    JOIN books ON copys.isbn = books.isbn
     `
   mysql.execute(sql)
     .then(([rows, fields]) => {

@@ -17,7 +17,7 @@ authorController.getAuthors = async (req, res, next) => {
 
 authorController.getWrites = async (req, res, next) => {
   const sql = `
-    SELECT DISTINCT books.title, CONCAT(first_name, ' ', last_name) AS author
+    SELECT DISTINCT books.title, books.isbn, CONCAT(first_name, ' ', last_name) AS author
     FROM books
     JOIN writes on books.isbn = writes.book_isbn
     JOIN authors on writes.author_id = authors.id AND authors.id = '${req.params.id}'

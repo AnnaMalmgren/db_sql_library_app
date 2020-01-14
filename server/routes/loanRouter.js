@@ -2,8 +2,9 @@
 
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/bookController')
+const controller = require('../controllers/loanController')
 
-router.get('/:title', controller.getAvailableBook)
+router.get('/:isbn', controller.getAvailable)
+router.get('/student/:id', controller.getLoansStudent)
 
 module.exports = router
