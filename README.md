@@ -3,7 +3,6 @@
 ## Installation guide. 
 
 ### Download and preparation 
-* Create a database named final_project. 
 * Fork or clone this project.
 * Locate to the folder config in the server folder (2dv513_finalProject/server/config) in a texteditor or IDE.
 * In the config folder create a file named dbConnection.js
@@ -14,11 +13,16 @@
 
 
 ### Create and seed Tables
+
+Alternative 1
 * Locate to the server folder in a terminal or IDE
 * From the server folder run:  npm run createTables
 * Stop script by press ctrl c
 * From the server folder run: npm run seeder
 * Stop script by press ctrl c
+
+Alternative 2
+* use the SQL dump in the folder SQL_Dump
 
 ### Start up frontend and backend
 * From the server folder run: npm run dev
