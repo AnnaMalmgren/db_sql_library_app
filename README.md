@@ -9,6 +9,9 @@
 * In the config folder create a file named dbConnection.js
 * Copy the content from dbConnection.js.template and insert it into dbConnection.js
 * Replace all 'VALUE' with your database setting.
+* Locate to the server folder in a terminal or IDE and run: npm install
+* Locate to the client folder in a terminal or IDE and run: npm install
+
 
 ### Create and seed Tables
 * Locate to the server folder in a terminal or IDE
