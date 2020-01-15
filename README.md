@@ -13,6 +13,7 @@
 
 
 ### Create and seed Tables
+* Create a database named final_project
 
 Alternative 1
 * Locate to the server folder in a terminal or IDE
