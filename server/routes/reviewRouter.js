@@ -6,8 +6,7 @@ const controller = require('../controllers/reviewController')
 
 router.get('/:isbn', controller.getReviews)
 router.post('/', controller.postReviews)
-router.post('/delete', controller.deleteReviews)
-router.get('/student/:id', controller.getReviewsStudent)
+router.delete('/:id', controller.deleteReviews)
 router.get('/student/:id', controller.getReviewsStudent)
 
 module.exports = router

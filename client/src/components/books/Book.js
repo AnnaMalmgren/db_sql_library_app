@@ -6,7 +6,8 @@ import { NavLink, Link, useHistory } from 'react-router-dom'
 
 function Book () {
   const history = useHistory()
-  const [book, setBook] = useState([])
+  const [book, setBook] = useState({})
+  const [author, setAuthor] = useState([])
   const [score, setScore] = useState('')
   let param = useParams()
 
@@ -14,8 +15,14 @@ function Book () {
     const fechData = async () => {
       let res = await window.fetch(`/api/books/${param.isbn}`)
       res = await res.json()
-      setBook(res)
+      setBook(getBook(res))
       setScore(res[0].score)
+      let authors = []
+      for (let obj in res) {
+        authors.push(res[obj].author)
+      }
+
+      setAuthor(authors)
     }
     fechData()
   }, [param.isbn])
@@ -28,6 +35,17 @@ function Book () {
       : <p><strong><i>This book has no reviews yet</i></strong></p>
   }
 
+  const getBook = (books) => {
+    return {
+      title: books[0].title,
+      genre: books[0].genre,
+      published: books[0].published,
+      language: books[0].language,
+      description: books[0].description,
+      author: books.map(book => book.author)
+    }
+  }
+
   return (
     <div className='App'>
       <nav className='navbar navbar-dark bg-dark sticky-top'>
@@ -37,17 +55,18 @@ function Book () {
         </div>
       </nav>
       <div className='container text-left'>
-        { book.map(book =>
-          <div key={book.title}>
-            <h2 className='mt-2 pt-2 mb-2 pb-2'>{book.title}</h2>
-            <p><strong>Author:</strong> { book.author }</p>
-            <p><strong>Published:</strong> { book.published }</p>
-            <p><strong>Language:</strong> { book.language }</p>
-            <p><strong>Average Score:</strong> { book.score > 0 ? book.score : 'This book hasn\'t been scored' }</p>
-            <Loans {...param} />
-            <p><strong>Description:</strong><br /> { book.description }</p>
-          </div>
-        )}
+
+        <div key={book.title}>
+          <h2 className='mt-2 pt-2 mb-2 pb-2'>{book.title}</h2>
+          <p><strong>Author:</strong>{author.map(auth => <i key={auth}> {auth} </i>)}</p>
+          <p><strong>Genre:</strong> { book.genre }</p>
+          <p><strong>Published:</strong> { book.published }</p>
+          <p><strong>Language:</strong> { book.language }</p>
+          <p><strong>Average Score:</strong> { score > 0 ? score : 'This book hasn\'t been scored' }</p>
+          <Loans {...param} />
+          <p><strong>Description:</strong><br /> { book.description }</p>
+        </div>
+
         <div />
 
         { reviews() }

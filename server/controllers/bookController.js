@@ -6,11 +6,11 @@ const bookController = {}
 
 bookController.getBookTitles = async (req, res, next) => {
   const sql = `
-    SELECT DISTINCT books.title, books.isbn, CONCAT(authors.first_name, ' ', authors.last_name) AS author
-    FROM books
-    JOIN writes ON books.isbn = writes.book_isbn
-    JOIN authors ON writes.author_id = authors.id
-    GROUP BY books.title
+    SELECT DISTINCT book.title, book.isbn, CONCAT(author.first_name, ' ', author.last_name) AS author
+    FROM book
+    JOIN writes ON book.isbn = writes.book_isbn
+    JOIN author ON writes.author_id = author.id
+    GROUP BY book.title
     `
   mysql.execute(sql)
     .then(([rows, fields]) => {
@@ -19,14 +19,18 @@ bookController.getBookTitles = async (req, res, next) => {
 }
 
 bookController.getBook = async (req, res, next) => {
+  const title = req.params.isbn
   const sql = `
-    SELECT books.title, AVG(books_score.score) AS score, books.description, books.language, books.published, CONCAT(authors.first_name, ' ', authors.last_name) AS author
-    FROM books
-    JOIN books_score ON books.isbn = books_score.isbn AND books.isbn = '${req.params.isbn}'
-    JOIN writes ON books.isbn = writes.book_isbn
-    JOIN authors ON writes.author_id = authors.id
+    SELECT book.title, AVG(books_score.score) AS score, book.description, book.language, book.published, 
+    CONCAT(author.first_name, ' ', author.last_name) AS author, genre.name AS genre
+    FROM book
+    JOIN books_score ON book.isbn = books_score.isbn AND book.isbn = ?
+    JOIN writes ON book.isbn = writes.book_isbn
+    JOIN author ON writes.author_id = author.id
+    JOIN genre on book.genre_id = genre.id
+    GROUP BY author.id
     `
-  mysql.execute(sql)
+  mysql.execute(sql, [title])
     .then(([rows, fields]) => {
       res.send(JSON.stringify(rows))
     })

@@ -21,7 +21,7 @@ const seedGenreTable = () => {
 const seedBookTable = () => {
   for (let book in bookData) {
     conn.execute(
-      'INSERT INTO books (title, isbn, published, description, language, genre_id) VALUES (?,?,?,?,?,?)',
+      'INSERT INTO book (title, isbn, published, description, language, genre_id) VALUES (?,?,?,?,?,?)',
       [bookData[book].title, bookData[book].isbn, bookData[book].published, bookData[book].description, bookData[book].language, bookData[book].genre])
       .catch(e => console.log(e))
   }
@@ -30,7 +30,7 @@ const seedBookTable = () => {
 const seedCopyTable = () => {
   for (let copy in copyData) {
     conn.execute(
-      'INSERT INTO copys (isbn) VALUES (?)',
+      'INSERT INTO copy (isbn) VALUES (?)',
       [copyData[copy].isbn])
       .catch(e => console.log(e))
   }
@@ -39,7 +39,7 @@ const seedCopyTable = () => {
 const seedAuthorTable = () => {
   for (let author in authorData) {
     conn.execute(
-      'INSERT INTO authors(first_name, last_name) VALUES (?,?)',
+      'INSERT INTO author(first_name, last_name) VALUES (?,?)',
       [authorData[author].first_name, authorData[author].last_name])
       .catch(e => console.log(e))
   }
@@ -48,7 +48,7 @@ const seedAuthorTable = () => {
 const seedStudentTable = () => {
   for (let student in studentData) {
     conn.execute(
-      'INSERT INTO students (id, first_name, last_name) VALUES (?,?,?)',
+      'INSERT INTO student (id, first_name, last_name) VALUES (?,?,?)',
       [studentData[student].id, studentData[student].first_name, studentData[student].last_name])
       .catch(e => console.log(e))
   }
@@ -57,7 +57,7 @@ const seedStudentTable = () => {
 const seedLoanTable = () => {
   for (let loan in loanData) {
     conn.execute(
-      'INSERT INTO loans (copy_id, student_id, loan_date, return_date) VALUES (?,?,?,?)',
+      'INSERT INTO loan (copy_id, student_id, loan_date, return_date) VALUES (?,?,?,?)',
       [loanData[loan].books_id, loanData[loan].student_id, loanData[loan].loan_date, loanData[loan].return_date])
       .catch(e => console.log(e))
   }
@@ -75,7 +75,7 @@ const seedWriteTable = () => {
 const seedReviewTable = () => {
   for (let review in reviewData) {
     conn.execute(
-      'INSERT INTO reviews (student_id, isbn, score, comment) VALUES (?,?,?,?)',
+      'INSERT INTO review (student_id, isbn, score, comment) VALUES (?,?,?,?)',
       [reviewData[review].student_id, reviewData[review].book_isbn, reviewData[review].score, reviewData[review].comment])
       .catch(e => console.log(e))
   }

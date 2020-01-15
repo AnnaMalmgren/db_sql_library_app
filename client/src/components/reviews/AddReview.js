@@ -38,11 +38,11 @@ function AddReview (loan) {
         <div className='modal-content bg-light'>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className='form-group m-2'>
-              <p>{msg}</p>
+              {msg}
               <label htmlFor='score'>Score</label>
               <input ref={register} type='text' name='score' placeholder='Enter score' className='form-control' />
               <label htmlFor='comment'>Comment</label>
-              <input ref={register} type='textfield' name='comment' placeholder='Enter comment' className='form-control' />
+              <textarea ref={register} name='comment' placeholder='Enter comment' className='form-control' />
               <button className='btn btn-primary mt-2'>Submit</button>
             </div>
           </form>

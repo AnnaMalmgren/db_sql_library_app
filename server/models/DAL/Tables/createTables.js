@@ -15,7 +15,7 @@ const createTables = () => {
     .catch(err => console.log(err))
 
   const books = `
-    CREATE TABLE IF NOT EXISTS books
+    CREATE TABLE IF NOT EXISTS book
     (
         title VARCHAR(50) NOT NULL,
         isbn VARCHAR(20) NOT NULL,
@@ -31,19 +31,19 @@ const createTables = () => {
     .catch(err => console.log(err))
 
   const copys = `
-    CREATE TABLE IF NOT EXISTS copys
+    CREATE TABLE IF NOT EXISTS copy
     (
         id INT NOT NULL AUTO_INCREMENT,
         isbn VARCHAR(20) NOT NULL,
         PRIMARY KEY(id),
-        FOREIGN KEY(isbn) REFERENCES books(isbn)
+        FOREIGN KEY(isbn) REFERENCES book(isbn)
     ) ENGINE=InnoDB;
   `
   conn.query(copys)
     .catch(err => console.log(err))
 
   const authors = `
-  CREATE TABLE IF NOT EXISTS authors
+  CREATE TABLE IF NOT EXISTS author
   (
       id INT NOT NULL AUTO_INCREMENT,
       first_name VARCHAR(20) NOT NULL,
@@ -55,7 +55,7 @@ const createTables = () => {
     .catch(err => console.log(err))
 
   const students = `
-  CREATE TABLE IF NOT EXISTS students
+  CREATE TABLE IF NOT EXISTS student
   (
       id varchar(20) NOT NULL UNIQUE,
       first_name VARCHAR(20) NOT NULL,
@@ -67,14 +67,14 @@ const createTables = () => {
     .catch(err => console.log(err))
 
   const loans = `
-    CREATE TABLE IF NOT EXISTS loans
+    CREATE TABLE IF NOT EXISTS loan
     (
-        copy_id INT(20) NOT NULL UNIQUE,
+        copy_id INT(20) NOT NULL,
         student_id VARCHAR(20) NOT NULL,
         loan_date DATE NOT NULL,
         return_date DATE NOT NULL,
         PRIMARY KEY (copy_id),
-        FOREIGN KEY(student_id) REFERENCES students(id)
+        FOREIGN KEY(student_id) REFERENCES student(id)
     ) ENGINE=InnoDB;
   `
   conn.query(loans)
@@ -92,7 +92,7 @@ const createTables = () => {
     .catch(err => console.log(err))
 
   const reviews = `
-    CREATE TABLE IF NOT EXISTS reviews
+    CREATE TABLE IF NOT EXISTS review
     (
         id INT NOT NULL AUTO_INCREMENT,
         student_id varchar(20) NOT NULL,
@@ -100,12 +100,39 @@ const createTables = () => {
         score INT NOT NULL,
         comment LONGTEXT,
         PRIMARY KEY (id),
-        FOREIGN KEY(student_id) REFERENCES students(id),
-        FOREIGN KEY(isbn) REFERENCES books(isbn)
+        FOREIGN KEY(student_id) REFERENCES student(id),
+        FOREIGN KEY(isbn) REFERENCES book(isbn)
     ) ENGINE=InnoDB;
   `
   conn.query(reviews)
     .catch(err => console.log(err))
 }
 
+const createViews = () => {
+  const scoreView = `
+  CREATE VIEW IF NOT EXISTS books_score
+  AS
+  SELECT book.title, book.isbn, review.score, review.student_id, review.comment, review.id
+  FROM book
+  LEFT JOIN review ON book.isbn = review.isbn
+  `
+  conn.query(scoreView)
+    .catch(err => console.log(err))
+
+  const availableBooksView = `
+  CREATE VIEW IF NOT EXISTS available_books
+  AS
+  SELECT loan.loan_date, loan.return_date, book.title, book.isbn,
+  CONCAT(COUNT(copy.id) - COUNT(loan.copy_id)) AS available
+  FROM loan
+  Right JOIN copy on copy.id = loan.copy_id
+  JOIN book on copy.isbn = book.isbn
+  GROUP BY book.title
+  `
+
+  conn.query(availableBooksView)
+    .catch(err => console.log(err))
+}
+
 createTables()
+createViews()

@@ -1,29 +1,20 @@
 import React, { useState } from 'react'
 import '../../App.css'
-import { useParams } from 'react-router-dom'
 
 function DeleteReview (review) {
-  const student = useParams()
   const [display, setDisplay] = useState(false)
   const [msg, setMsg] = useState('')
 
   const deleteRev = async () => {
-    const reviewToDelete = {
-      score: review.score,
-      comment: review.comment,
-      isbn: review.isbn,
-      student: student.id
-    }
-    let res = await sendReview(reviewToDelete)
+    let res = await sendReview()
     let userMsg = <p className='alert alert-success'>{res.msg}</p>
     return userMsg
   }
 
-  const sendReview = async (reviewToDelete) => {
-    let res = await window.fetch(`/api/reviews/delete`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(reviewToDelete)
+  const sendReview = async () => {
+    let res = await window.fetch(`/api/reviews/${review.id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' }
     })
     res = await res.json()
     return res

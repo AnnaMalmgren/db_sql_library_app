@@ -29,7 +29,7 @@ function Authors () {
             { authors.map(author =>
               <li className='list-group-item' key={author.id}>
                 <Link to={`/author/${author.id}`} className='text-dark text-decoration-none'>
-                  {author.authors}
+                  {author.author}
                 </Link>
               </li>) }
           </ul>
