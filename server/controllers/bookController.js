@@ -6,7 +6,7 @@ const bookController = {}
 
 bookController.getBookTitles = async (req, res, next) => {
   const sql = `
-    SELECT DISTINCT book.title, book.isbn, CONCAT(author.first_name, ' ', author.last_name) AS author
+    SELECT book.title, book.isbn, CONCAT(author.first_name, ' ', author.last_name) AS author
     FROM book
     JOIN writes ON book.isbn = writes.book_isbn
     JOIN author ON writes.author_id = author.id
