@@ -18,7 +18,7 @@ function App () {
       <div className='jumbotron jumbotron-fluid'>
         <div className='container'>
           <h1 className='display-4'>Your university library</h1>
-          <p className='lead'>This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+          <p className='lead'>Read review and choose books with ease.</p>
         </div>
       </div>
       <a href='/books' className='btn btn-info btn-lg p-2 m-2'>
